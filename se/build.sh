@@ -1,5 +1,5 @@
 #!/bin/sh
-cd ../../fc
+cd ..
 . ./env
 make $1 CFG=$2
 
