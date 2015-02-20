@@ -1,0 +1,6 @@
+DIR=hal/cmsis
+SRCS := $(SRCS) $(wildcard $(DIR)/*.c)
+SRCS := $(SRCS) $(wildcard $(DIR)/*.s)
+INCS := $(INCS) -I$(DIR)
+MKDIR := $(MKDIR) $(DIR)
+

@@ -1,0 +1,6 @@
+DIR=hal/STM32F4xx_HAL_Driver
+
+SRCS := $(SRCS) $(wildcard $(DIR)/Src/*.c)
+INCS := $(INCS) -I$(DIR)/Inc
+MKDIR := $(MKDIR) $(DIR)/Src
+

@@ -1,0 +1,315 @@
+<!DOCTYPE Project SYSTEM "http://www.slickedit.com/dtd/vse/10.0/vpj.dtd">
+<Project
+	Version="10.0"
+	VendorName="SlickEdit"
+	TemplateName="Other C/C++"
+	WorkingDir=".">
+	<Config
+		Name="Debug"
+		Type="cpp"
+		DebugCallbackName="gdb"
+		OutputFile="%bdfc.elf"
+		CompilerConfigName="Latest Version">
+		<Menu>
+			<Target
+				Name="Compile"
+				MenuCaption="&amp;Compile"
+				CaptureOutputWith="ProcessBuffer"
+				OutputExts="*.o"
+				SaveOption="SaveCurrent"
+				RunFromDir="%rw">
+				<Exec CmdLine='cc -c -g %i %defd -o "%bd%n.o" "%f"'/>
+			</Target>
+			<Target
+				Name="Link"
+				MenuCaption="&amp;Link">
+				<Exec CmdLine='cc -g -o "%o" %f %libs'/>
+			</Target>
+			<Target
+				Name="Build"
+				MenuCaption="&amp;Build"
+				CaptureOutputWith="ProcessBuffer"
+				SaveOption="SaveWorkspaceFiles"
+				RunFromDir="%rw">
+				<Exec CmdLine="build.bat all %bn"/>
+			</Target>
+			<Target
+				Name="Rebuild"
+				MenuCaption="&amp;Rebuild"
+				CaptureOutputWith="ProcessBuffer"
+				SaveOption="SaveWorkspaceFiles"
+				RunFromDir="%rw">
+				<Exec CmdLine="build.bat clean %bn"/>
+			</Target>
+			<Target
+				Name="Debug"
+				MenuCaption="&amp;Debug"
+				SaveOption="SaveNone"
+				RunFromDir="%rw">
+				<Exec
+					CmdLine="st-util"
+					Type="Slick-C"/>
+			</Target>
+			<Target
+				Name="Execute"
+				MenuCaption="E&amp;xecute"
+				SaveOption="SaveNone"
+				RunFromDir="%rw">
+				<Exec
+					CmdLine="st-util"
+					Type="Slick-C"/>
+			</Target>
+		</Menu>
+	</Config>
+	<Config
+		Name="Release"
+		Type="cpp"
+		DebugCallbackName="gdb"
+		OutputFile="%bdfc.elf"
+		CompilerConfigName="Latest Version">
+		<Menu>
+			<Target
+				Name="Compile"
+				MenuCaption="&amp;Compile"
+				CaptureOutputWith="ProcessBuffer"
+				SaveOption="SaveCurrent"
+				OutputExts="*.o"
+				RunFromDir="%rw">
+				<Exec CmdLine='cc -c -O %i %defd -o "%bd%n.o" "%f"'/>
+			</Target>
+			<Target
+				Name="Link"
+				MenuCaption="&amp;Link">
+				<Exec CmdLine='cc -O -o "%o" %f %libs'/>
+			</Target>
+			<Target
+				Name="Build"
+				MenuCaption="&amp;Build"
+				CaptureOutputWith="ProcessBuffer"
+				SaveOption="SaveWorkspaceFiles"
+				RunFromDir="%rw">
+				<Exec CmdLine="build.bat all %bn"/>
+			</Target>
+			<Target
+				Name="Rebuild"
+				MenuCaption="&amp;Rebuild"
+				CaptureOutputWith="ProcessBuffer"
+				SaveOption="SaveWorkspaceFiles"
+				RunFromDir="%rw">
+				<Exec CmdLine="build.bat clean %bn"/>
+			</Target>
+			<Target
+				Name="Debug"
+				MenuCaption="&amp;Debug"
+				SaveOption="SaveNone"
+				BuildFirst="1"
+				CaptureOutputWith="ProcessBuffer"
+				RunFromDir="%rw\..">
+				<Exec CmdLine="pwd"/>
+			</Target>
+			<Target
+				Name="Execute"
+				MenuCaption="E&amp;xecute"
+				SaveOption="SaveNone"
+				RunFromDir="%rw">
+				<Exec
+					CmdLine="st-util"
+					Type="Slick-C"/>
+			</Target>
+		</Menu>
+	</Config>
+	<Rules Name="Compile">
+		<Rule
+			InputExts="*.s"
+			OutputExts="*.o"
+			LinkObject="1">
+			<Exec CmdLine='as -o "%bd%n.o" "%f"'/>
+		</Rule>
+	</Rules>
+	<CustomFolders>
+		<Folder
+			Name="Source Files"
+			Filters="*.c;*.C;*.cc;*.cpp;*.cp;*.cxx;*.c++;*.prg;*.pas;*.dpr;*.asm;*.s;*.bas;*.java;*.cs;*.sc;*.e;*.cob;*.html;*.rc;*.tcl;*.py;*.pl;*.d;*.m;*.mm;*.go"></Folder>
+		<Folder
+			Name="Header Files"
+			Filters="*.h;*.H;*.hh;*.hpp;*.hxx;*.inc;*.sh;*.cpy;*.if"></Folder>
+		<Folder
+			Name="Resource Files"
+			Filters="*.ico;*.cur;*.dlg"/>
+		<Folder
+			Name="Bitmaps"
+			Filters="*.bmp"/>
+		<Folder
+			Name="Other Files"
+			Filters=""/>
+	</CustomFolders>
+	<Files AutoFolders="DirectoryView">
+		<Folder Name="../">
+			<F N="../main.c"/>
+			<F N="../main.h"/>
+			<F
+				N="../Makefile"
+				Type="Makefile"/>
+			<F N="../STM32F407VG_FLASH.ld"/>
+			<F N="../stm32f4xx_it.c"/>
+			<F N="../stm32f4xx_it.h"/>
+		</Folder>
+		<Folder Name="../bsp">
+			<Folder Name="STM32F4-Discovery">
+				<F N="../bsp/STM32F4-Discovery/accelero.h"/>
+				<F N="../bsp/STM32F4-Discovery/audio.h"/>
+				<F N="../bsp/STM32F4-Discovery/cs43l22.c"/>
+				<F N="../bsp/STM32F4-Discovery/cs43l22.h"/>
+				<F N="../bsp/STM32F4-Discovery/lis302dl.c"/>
+				<F N="../bsp/STM32F4-Discovery/lis302dl.h"/>
+				<F N="../bsp/STM32F4-Discovery/lis3dsh.c"/>
+				<F N="../bsp/STM32F4-Discovery/lis3dsh.h"/>
+				<F N="../bsp/STM32F4-Discovery/pdm_filter.h"/>
+				<F N="../bsp/STM32F4-Discovery/stm32f4_discovery.c"/>
+				<F N="../bsp/STM32F4-Discovery/stm32f4_discovery.h"/>
+				<F N="../bsp/STM32F4-Discovery/stm32f4_discovery_accelerometer.c"/>
+				<F N="../bsp/STM32F4-Discovery/stm32f4_discovery_accelerometer.h"/>
+			</Folder>
+		</Folder>
+		<Folder Name="../hal">
+			<Folder Name="cmsis">
+				<F N="../hal/cmsis/core_cm4.h"/>
+				<F N="../hal/cmsis/core_cmFunc.h"/>
+				<F N="../hal/cmsis/core_cmInstr.h"/>
+				<F N="../hal/cmsis/core_cmSimd.h"/>
+				<F N="../hal/cmsis/startup_stm32f407xx.s"/>
+				<F N="../hal/cmsis/stm32f407xx.h"/>
+				<F N="../hal/cmsis/stm32f4xx.h"/>
+				<F N="../hal/cmsis/system_stm32f4xx.c"/>
+				<F N="../hal/cmsis/system_stm32f4xx.h"/>
+			</Folder>
+			<Folder Name="STM32F4xx_HAL_Driver">
+				<Folder Name="Inc">
+					<Folder Name="Legacy">
+						<F N="../hal/STM32F4xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h"/>
+					</Folder>
+					<F N="../hal/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_adc.h"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_adc_ex.h"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_can.h"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_conf.h"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_cortex.h"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_crc.h"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_cryp.h"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_cryp_ex.h"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dac.h"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dac_ex.h"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dcmi.h"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma2d.h"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma_ex.h"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_eth.h"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash.h"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio_ex.h"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_hash.h"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_hash_ex.h"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_hcd.h"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2c.h"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2c_ex.h"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2s.h"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2s_ex.h"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_irda.h"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_iwdg.h"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_ltdc.h"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_nand.h"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_nor.h"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pccard.h"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pcd.h"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pcd_ex.h"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc_ex.h"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rng.h"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rtc.h"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rtc_ex.h"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_sai.h"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_sd.h"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_sdram.h"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_smartcard.h"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_sram.h"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_usart.h"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_wwdg.h"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_fmc.h"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_fsmc.h"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_sdmmc.h"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usb.h"/>
+				</Folder>
+				<Folder Name="Src">
+					<F N="../hal/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc.c"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_can.c"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_crc.c"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cryp.c"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cryp_ex.c"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dac.c"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dac_ex.c"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dcmi.c"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma2d.c"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma_ex.c"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_eth.c"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.c"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ramfunc.c"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_hash.c"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_hash_ex.c"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_hcd.c"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c.c"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c_ex.c"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2s.c"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2s_ex.c"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_irda.c"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_iwdg.c"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc.c"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_msp_template.c"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_nand.c"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_nor.c"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pccard.c"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pcd.c"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pcd_ex.c"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.c"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.c"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rng.c"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rtc.c"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rtc_ex.c"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_sai.c"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_sd.c"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_sdram.c"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_smartcard.c"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_spi.c"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_sram.c"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim.c"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim_ex.c"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_usart.c"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_wwdg.c"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_fmc.c"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_fsmc.c"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_sdmmc.c"/>
+					<F N="../hal/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_usb.c"/>
+				</Folder>
+			</Folder>
+		</Folder>
+		<F N="build.bat"/>
+		<F N="build.sh"/>
+	</Files>
+</Project>

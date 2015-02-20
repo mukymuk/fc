@@ -1,0 +1,5 @@
+DIR=bsp/STM32F4-Discovery
+SRCS := $(SRCS) $(wildcard $(DIR)/*.c)
+INCS := $(INCS) -I$(DIR)
+MKDIR := $(MKDIR) $(DIR)
+
